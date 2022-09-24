@@ -1,0 +1,59 @@
+.overlay {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+}
+
+.links {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.links_container {
+    width: 90%;
+    height: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.letter {
+    font-size: 5rem;
+    transition: all 300ms;
+    transition-timing-function:ease-in-out;
+    height: 100%;
+    pointer-events: fill;
+}
+
+.letter:hover {
+    color: #C62E65;
+}
+
+.return {
+    width: fit-content;
+    padding:  0.75rem 1rem;
+
+}
+
+.return h2{
+    pointer-events: all;
+    padding: 0.5rem 0.75rem;
+    transition: all 1000ms;
+    border-style:dotted;
+    border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.return h2:hover {
+
+    border-radius: 5rem 0.5rem 0.5rem 5rem;
+    border-collapse: collapse;
+    background-color: #C62E65;
+}
