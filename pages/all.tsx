@@ -38,15 +38,15 @@ const Sphere = () => {
   );
 };
 
-const useMouseMove = (onMouseMove) => {
-  useEffect(() => {
-      document.addEventListener("mousemove", onMouseMove)
+// const useMouseMove = (onMouseMove) => {
+//   useEffect(() => {
+//       document.addEventListener("mousemove", onMouseMove)
 
-      return () => {
-          document.removeEventListener("mousemove", onMouseMove)
-      }
-  }, [onMouseMove])
-}
+//       return () => {
+//           document.removeEventListener("mousemove", onMouseMove)
+//       }
+//   }, [onMouseMove])
+// }
 
 const LetterWrapper = ({info}) => {
 
@@ -69,6 +69,11 @@ const All: NextPage = ({page}) => {
 
   return (
     <div className={styles.main}>
+        <div className={styles.return}>
+        <Link href="/">
+            <a><h2>return</h2></a>
+        </Link>
+        </div>
       <Canvas orthographic camera={{zoom:120}}>
         <Camera />
         <Suspense fallback={null}>
@@ -109,9 +114,9 @@ async function GetShader(page:any,index:number):Promise<ModelInfo> {
   const yPos = -Math.floor(index/colAmount);
   const groupProps : GroupProps =
   {
-    position : [(xPos-colAmount/2)*1.3, yPos*1.5 +2, 0],
+    position : [(xPos-colAmount/2)*2 + 0.75, yPos*2.5 + 3.75, 0],
     rotation:[0,0,0],
-    scale: [0.6,0.6,0.6]
+    scale: [1,1,1]
   }
 
   return {
@@ -123,10 +128,7 @@ async function GetShader(page:any,index:number):Promise<ModelInfo> {
   }
 }
 
-function GetPos(index:number) : Vector3
-{
-  return new Vector3(index % 9,Math.round(index/9)*2.0,0);
-}
+function GetPos(index:number) : Vector3 {return new Vector3(index % 6,Math.round(index/6)*2.0,0);}
 
 export default All
 

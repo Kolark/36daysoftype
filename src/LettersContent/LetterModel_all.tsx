@@ -30,7 +30,7 @@ export default function Model(props: ModelProps) {
     const group  = useRef<THREE.Group>();
     const group2 = useRef<THREE.Group>();
     const { nodes, materials } = useGLTF("/gltfCompressed/" + props.model) as GLTFResult;
-    // const { camera, gl } = useThree();
+
     const myRef = useRef();
     const myRef2 = useRef([0, 0]);
 
@@ -48,50 +48,26 @@ export default function Model(props: ModelProps) {
         // @ts-ignore
         myRef.current.material.uniforms.time.value = clock.getElapsedTime();
         if (group.current) {
-            group.current.rotation.x = Math.sin(myRef2.current[1] * 0.05);
-            group.current.rotation.y = Math.cos(myRef2.current[0] * 0.05);
+            group.current.rotation.x = ((myRef2.current[1]/window.innerHeight) - 0.5) * Math.PI;
+            group.current.rotation.y = ((myRef2.current[0]/window.innerWidth) - 0.5)  * Math.PI;
         }
     });
 
-    useEffect(() => {
-        window.addEventListener("mousemove", (e) => {
-            myRef2.current = [e.x, e.y];
-        });
-    });
+    useEffect(() => { window.addEventListener("mousemove", (e) => { myRef2.current = [e.x, e.y]; }); });
     //Get meshes from nodes
     // @ts-ignore
-    const meshes: THREE.Mesh[] = Object.values(nodes).filter(
-        (m) => m.geometry != undefined
-    );
+    const meshes: THREE.Mesh[] = Object.values(nodes).filter( (m) => m.geometry != undefined);
 
     //first mesh created manually so i can put a ref
     const firstMesh = meshes.shift();
-    const meshesElements = meshes.map((m) => {
-        return (
-            <mesh key={m.id} geometry={m.geometry} material={shaderMaterial} />
-        );
-    });
+    const meshesElements = meshes.map((m) => { return (<mesh key={m.id} geometry={m.geometry} material={shaderMaterial} />); });
 
     return (
         <group ref={group} {...props.groups} dispose={null}>
-            <group
-                ref={group2}
-                position={[-0.75, -0.75, 0.1]}
-                rotation={[Math.PI / 2, 0, 0]}
-                scale={0.01}
-            >
-                <mesh
-                    ref={myRef}
-                    geometry={firstMesh?.geometry}
-                    material={shaderMaterial}
-                />
+            <group ref={group2} position={[-0.75, -0.75, 0.1]} rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+                <mesh ref={myRef} geometry={firstMesh?.geometry} material={shaderMaterial}/>
                 {meshesElements}
             </group>
-
-            <mesh>
-                <sphereBufferGeometry args={[0.15, 7, 7]} />
-                <meshNormalMaterial />
-            </mesh>
         </group>
     );
 }

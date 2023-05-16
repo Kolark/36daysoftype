@@ -37,11 +37,11 @@ const Camera = (props:any) => {
   const { camera, gl } = useThree();
   useEffect(
     () => {
-      console.log(typeof(gl.domElement))
-      
       const controls = new OrbitControls(camera, gl.domElement);
-      controls.maxDistance = 1.5;
+      controls.maxDistance = 4;
       controls.minDistance = 1;
+      // controls.position0 = new THREE.Vector3(-10,0,80);
+      
       controls.enablePan = false;
       controls.enableRotate = true;
       controls.enableZoom = true;
@@ -59,18 +59,12 @@ export default function Page({page}) {
   {
     position :[0, 0, 0],
   }
-  const mycam = ()=><Camera/>;
-   const myr = useRef(null);
-   useEffect(()=>{
-    console.log(myr.current);
-
-   })
 
   return (
     <main className={styles.main}>
     <Canvas >
-      <mycam />
-      <Camera ref={myr}/>
+      
+      <Camera/>
         <Suspense fallback={null}>
           <LetterContent vertexShader={page.vertex} fragmentShader={page.frag} model={page.model} groups={groupProps} scale={page.scale} offset={page.positionOffset} />
         {/* <Sphere /> */}
