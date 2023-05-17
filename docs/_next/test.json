@@ -1,0 +1,12 @@
+{
+    "pages":
+    [
+        {
+            "letter":"a",
+            "shader":"A_Shader",
+            "model":"A_Letter.glb",
+            "posOffset":[0,0,0],
+            "scaleModifier":1
+        }
+    ]
+}
