@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    assetPrefix : "./",
+    output: "docs",
     reactStrictMode: true,
     webpack: (config, options) => {
         config.module.rules.push({
