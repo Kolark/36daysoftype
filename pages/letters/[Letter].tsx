@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import styles from "../../src/styles/Letter.module.css";
 import * as THREE from 'three';
-import ReactDOM from 'react-dom';
+
 import React, { Suspense, useEffect, useRef, useState } from 'react';
 
 import { Canvas, GroupProps, useThree } from '@react-three/fiber';
@@ -53,7 +53,7 @@ const Camera = (props:any) => {
   );
 };
 
-export default function Page({page}) {
+export default function Page({page}:any) {
 
   const groupProps : GroupProps =
   {
@@ -67,7 +67,6 @@ export default function Page({page}) {
       <Camera/>
         <Suspense fallback={null}>
           <LetterContent vertexShader={page.vertex} fragmentShader={page.frag} model={page.model} groups={groupProps} scale={page.scale} offset={page.positionOffset} />
-        {/* <Sphere /> */}
         </Suspense>
     </Canvas>
     <div className={styles.overlay}>
@@ -82,12 +81,15 @@ export async function getStaticPaths() {
     const Letter = page.letter;
     return {params: {Letter}};
   });
-  return {paths, fallback: true};
+  return {paths, fallback: false};
 }
 
 export async function getStaticProps({params} : any) {
   const currentPath = params.Letter;
-  const pageFound = content.pages.find(page => page.letter === currentPath) || {notfound: true};
+  const pageFound:any = content.pages.find(page => page.letter === currentPath);
+  if(pageFound === undefined){
+    return {notFound: true}
+  }
   let previous ="";
   let next="";
   const index = content.pages.findIndex(page => page.letter === currentPath);
@@ -99,8 +101,8 @@ export async function getStaticProps({params} : any) {
   }
 
 
-  const vertexShader = await import("../../src/shaders/" + pageFound.shader + "/vertex.glsl");
-  const fragmentShader = await import("../../src/shaders/" + pageFound.shader+ "/fragment.glsl");
+  const vertexShader : any =   await import("../../src/Shaders/" + pageFound.shader +"/vertex.glsl");
+  const fragmentShader : any = await import("../../src/Shaders/" + pageFound.shader +"/fragment.glsl");
 
   const page : PageProps = {
     previous:previous,

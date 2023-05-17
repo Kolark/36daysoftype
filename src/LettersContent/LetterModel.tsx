@@ -55,7 +55,7 @@ export default function Model(props: ModelProps) {
     //Get meshes from nodes
     // @ts-ignore
     const meshes: THREE.Mesh[] = Object.values(nodes).filter(
-        (m) => m.geometry != undefined
+        (m:any) => m.geometry != undefined
     );
 
     //first mesh created manually so i can put a ref

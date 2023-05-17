@@ -48,19 +48,19 @@ const Sphere = () => {
 //   }, [onMouseMove])
 // }
 
-const LetterWrapper = ({info}) => {
+// const LetterWrapper = ({info}) => {
 
-  useFrame(({clock})=>{
-    // @ts-ignore
-    info.groupProps.rotation.y = clock.getElapsedTime();
-  });
+//   useFrame(({clock})=>{
+//     // @ts-ignore
+//     info.groupProps.rotation.y = clock.getElapsedTime();
+//   });
 
-  return (
-    <LetterContent vertexShader={info.vertexShader} fragmentShader={info.fragmentShader} model={info.model} groups={info.groupProps} />
-  )
-}
+//   return (
+//     <LetterContent vertexShader={info.vertexShader} fragmentShader={info.fragmentShader} model={info.model} groups={info.groupProps} />
+//   )
+// }
 
-const All: NextPage = ({page}) => {
+const All: NextPage = ({page}:any) => {
 
   // useMouseMove(e => {
 
