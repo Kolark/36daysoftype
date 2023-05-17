@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    assetPrefix : "./",
+    assetPrefix : "https://kolark.github.io/36daysoftype",
     output: "docs",
     reactStrictMode: true,
     webpack: (config, options) => {
