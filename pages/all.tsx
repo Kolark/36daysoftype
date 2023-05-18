@@ -70,7 +70,7 @@ const All: NextPage = ({page}:any) => {
   return (
     <div className={styles.main}>
         <div className={styles.return}>
-        <Link href="/">
+        <Link href="/36daysoftype">
             <a><h2>return</h2></a>
         </Link>
         </div>

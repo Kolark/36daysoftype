@@ -13,19 +13,19 @@ export default function Overlay(props:OverlayProps) {
         <div className={styles.links}>
             <div className={styles.links_container}>
             <div className={styles.letter}>
-                <Link href={"/letters/"+props.previous}>
+                <Link href={"/36daysoftype/letters/"+props.previous}>
                 <a><h1>{props.previous.toUpperCase()}</h1></a>
                 </Link>
             </div>
             <div className={styles.letter}>
-                <Link href={"/letters/"+props.next}>
+                <Link href={"/36daysoftype/letters/"+props.next}>
                 <a><h1>{props.next.toUpperCase()}</h1></a>
                 </Link>
             </div>
             </div>
         </div>
         <div className={styles.return}>
-        <Link href="/">
+        <Link href="/36daysoftype">
             <a><h2>return</h2></a>
         </Link>
         </div>
