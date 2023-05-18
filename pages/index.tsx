@@ -20,7 +20,7 @@ const Home: NextPage = () => {
         <div className={styles.lettergrid}>
         {content.pages.map((p)=> <LetterBox key={p.letter} letter={p.letter.toUpperCase()} /> )}
         </div>
-        <Link href={"./all"}>
+        <Link href={"/36daysoftype/all"}>
           <a>
         <h1 className={styles.all}><u>See all letters</u></h1>
           </a>

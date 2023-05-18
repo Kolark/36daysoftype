@@ -9,7 +9,7 @@ export default function Letter(props : LetterProps) {
     return (
         <>
         <div className={styles.letterBG}>
-            <Link href={"./letters/"+props.letter.toLowerCase()}>
+            <Link href={"/36daysoftype/letters/"+props.letter.toLowerCase()}>
                 <a className={styles.letterBox}>
 
                     {props.letter}
