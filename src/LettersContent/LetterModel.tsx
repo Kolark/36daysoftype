@@ -28,9 +28,9 @@ type ModelProps = {
 
 export default function Model(props: ModelProps) {
     //Main hooks
-    useGLTF.preload("/gltfCompressed/" + props.model);
+    useGLTF.preload("/36daysoftype/gltfCompressed/" + props.model);
     const group = useRef<THREE.Group>();
-    const { nodes, materials } = useGLTF("/gltfCompressed/" + props.model ) as GLTFResult;
+    const { nodes, materials } = useGLTF("/36daysoftype/gltfCompressed/" + props.model ) as GLTFResult;
     // const { camera, gl } = useThree();
     const myRef = useRef();
 
